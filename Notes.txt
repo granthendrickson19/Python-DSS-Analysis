@@ -1,2 +1,5 @@
 Useful Things from class I should look into for my project.
 argparse for file handling to get input files. I will probs use csv but unsure rn
+
+I think my hardest thing to do will be including my model equations (currently want linear, quadratip exponential)
+Maybe YAML 
