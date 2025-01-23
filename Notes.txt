@@ -3,3 +3,4 @@ argparse for file handling to get input files. I will probs use csv but unsure r
 
 I think my hardest thing to do will be including my model equations (currently want linear, quadratip exponential)
 Maybe YAML 
+Look into HDF5 for handling my data
