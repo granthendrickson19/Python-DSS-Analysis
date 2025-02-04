@@ -7,3 +7,8 @@ Look into HDF5 for handling my data
 
 
 2/3/2025
+My package needs to be installable, and testing and continuous integrate, and documentation. 
+Make test names long, numpy.allclose to compare arrays to expected solutions
+pytest should make functions
+def test_normalization 
+Github Actions for CI testing
