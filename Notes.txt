@@ -12,3 +12,25 @@ Make test names long, numpy.allclose to compare arrays to expected solutions
 pytest should make functions
 def test_normalization 
 Github Actions for CI testing
+Pymars
+
+2/5
+Documentation site at SPHINX
+Naming Guidelines
+
+packages
+modules
+ClassesUseCamelCase
+ExceptionsAreClassesToo
+functions_use_snake_case
+CONSTANTS_USE_ALL_CAPS
+#variables
+_single_leading_underscore #internal to module
+
+Docstrings placed immediatefly after a function. to use with Python via help()
+Explain arguments, inputs, variables, and intent
+
+# def power(base,x)
+"""
+Computs base^x Both base and x should be integers, floats, or another numeric type
+"""
