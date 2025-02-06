@@ -34,3 +34,6 @@ Explain arguments, inputs, variables, and intent
 """
 Computs base^x Both base and x should be integers, floats, or another numeric type
 """
+
+Numpy or Google style docstrings 
+Follow class notes for sphinx setup 

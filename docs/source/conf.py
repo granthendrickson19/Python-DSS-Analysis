@@ -14,12 +14,16 @@ release = '2025'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = []
+extensions = ['myst_parser',
+              'sphinx.ext.autodoc',
+              'sphinx.ext.napoleon',
+              'sphinx.ext.mathjax',
+              'sphinx.ext.intersphinx']
 
 templates_path = ['_templates']
 exclude_patterns = []
 
-
+napoleon_numpy_docstring = True
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
