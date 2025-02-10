@@ -17,11 +17,6 @@ if __name__ == "__main__":
         inputs = yaml.safe_load(f)
     
 #parser.add_argument('-o','--output',required=True, help='Output file name')
-#I want to have three inputs on my command line 
-
-
-#adding this comment
-
 
 #print (args.data)
 #print (args.model)
