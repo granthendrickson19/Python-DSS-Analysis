@@ -21,8 +21,6 @@ if __name__ == "__main__":
 #print (args.data)
 #print (args.model)
 
-#data should be in format of time | conserveed quantity of interest
-
 #print(my_data)
 
 
