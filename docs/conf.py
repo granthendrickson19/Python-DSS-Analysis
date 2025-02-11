@@ -7,7 +7,6 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 import os
 import sys
-import DSSHandler 
 
 sys.path.insert(0, os.path.abspath(".."))
 
