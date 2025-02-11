@@ -17,7 +17,7 @@ if __name__ == "__main__":
         inputs = yaml.safe_load(f)
     
 #parser.add_argument('-o','--output',required=True, help='Output file name')
-
+###
 #print (args.data)
 #print (args.model)
 
