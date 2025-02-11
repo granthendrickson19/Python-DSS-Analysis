@@ -1,3 +1,3 @@
 Functions
 -------------------
-.. automodule:: DSSHandler.py
+.. automodule:: DSSHandler
