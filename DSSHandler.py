@@ -19,3 +19,4 @@ def data_normalizer(data, inputs):
     ndarray
         Array with normalized data (array of Beta's in DSS terminology)
     """
+    x =1
