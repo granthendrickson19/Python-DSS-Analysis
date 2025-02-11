@@ -1,3 +1,3 @@
 Functions
 -------------------
-.. autofunction:: DSSHandler.data_normalizer
+.. automodule:: DSSHandler.py
