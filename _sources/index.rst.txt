@@ -17,3 +17,4 @@ documentation for details.
       
 .. toctree::
    DSSHandler
+   samplemodel
