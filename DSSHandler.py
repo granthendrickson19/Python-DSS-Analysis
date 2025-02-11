@@ -4,6 +4,7 @@ import argparse
 import yaml
 from numpy import genfromtxt
 
+#First Function
 def data_normalizer(data, inputs):
     """Normalizes Data to Users Input, Creates conserved quantity for DSS analysis
 
