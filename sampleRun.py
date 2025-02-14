@@ -19,8 +19,8 @@ if __name__ == "__main__":
         inputs = yaml.safe_load(f)
 
 _splitdata = np.array_split(my_data,2,1)
-_time =_splitdata[0]
-_rawdata = _splitdata[1]
+_time = np.concatenate(_splitdata[0])
+_rawdata = np.concatenate(_splitdata[1])
 
-betas = DSSHandler.data_normalizer(_rawdata,inputs)
-print(betas)
+databetas = DSSHandler.data_normalizer(_rawdata,inputs)
+dataomegas = DSSHandler.time_derivative(_rawdata,_time)

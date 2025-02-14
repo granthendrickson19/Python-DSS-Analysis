@@ -1,4 +1,4 @@
-normalize: last #first last
+normalize: first #first last
 model: quad #quad, exponential in form of y=ax^2+bx +c or y=ae^(bx)+c
 A: 1 #constant float values
 B: 1
