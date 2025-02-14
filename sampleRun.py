@@ -24,3 +24,5 @@ _rawdata = np.concatenate(_splitdata[1])
 
 databetas = DSSHandler.data_normalizer(_rawdata,inputs)
 dataomegas = DSSHandler.time_derivative(_rawdata,_time)
+modeldata = DSSHandler.model_data_generator(_time,inputs)
+print(modeldata)

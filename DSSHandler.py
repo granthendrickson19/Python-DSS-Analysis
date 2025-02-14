@@ -1,8 +1,6 @@
 import numpy as np
-import sys
-import argparse
-import yaml
-from numpy import genfromtxt
+import math
+
 
 
 def data_normalizer(data, inputs):
@@ -22,7 +20,7 @@ def data_normalizer(data, inputs):
     """
     if inputs["normalize"] == "first":
         return (data / data[0])
-    if inputs["normalize"] == "last":
+    elif inputs["normalize"] == "last":
         return (data / data[-1])
 
 def time_derivative(data, time):
@@ -41,3 +39,33 @@ def time_derivative(data, time):
         Array with normalized data (array of omegas's in DSS terminology)
     """
     return np.gradient(data,time)
+
+def model_data_generator(time,inputs):
+    """Generates the model dataset for comparison to experimental data
+
+    Parameters
+    ----------
+    data : inputs
+        Input file with model values specified 
+    time : ndarray
+        Time value of datasets
+    
+    Returns
+    -------
+    ndarray
+        Array with non-normalized data generated from model
+    """
+     
+    if inputs["model"] == "quad":
+        data  = (float(inputs["A"])*time**2)+(float(inputs["B"])*time)+float(inputs["C"])
+        return data
+
+    elif inputs["model"] == "exp":
+        data = (float(inputs["A"])*math.exp(float(inputs["B"])*time))+float(inputs["C"])
+        print("hello")
+        return data
+    else:
+        raise ValueError(
+            "Incorrect Model Selection"
+        )
+          
