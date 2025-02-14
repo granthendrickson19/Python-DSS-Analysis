@@ -2,6 +2,7 @@ import numpy as np
 import sys
 import argparse
 import yaml
+import DSSHandler
 from numpy import genfromtxt
 
 
@@ -16,3 +17,10 @@ if __name__ == "__main__":
     my_data = genfromtxt(args.data, delimiter =',',skip_header=1)
     with open(args.model,'r') as f:
         inputs = yaml.safe_load(f)
+
+_splitdata = np.array_split(my_data,2,1)
+_time =_splitdata[0]
+_rawdata = _splitdata[1]
+
+betas = DSSHandler.data_normalizer(_rawdata,inputs)
+print(betas)

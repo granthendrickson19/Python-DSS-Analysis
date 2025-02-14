@@ -20,3 +20,7 @@ def data_normalizer(data, inputs):
     ndarray
         Array with normalized data (array of Beta's in DSS terminology)
     """
+    if inputs["normalize"] == "first":
+        return (data / data[0])
+    if inputs["normalize"] == "last":
+        return (data / data[-1])
