@@ -22,6 +22,11 @@ def data_normalizer(data, inputs):
         return (data / data[0])
     elif inputs["normalize"] == "last":
         return (data / data[-1])
+    else:
+        raise ValueError(
+            "Incorrect normilzation option selected"
+        )
+    
 
 def time_derivative(data, time):
     """Gets timed derivative using finite differences (can calculate omega or omega prime, first and second time derivative of beta respectively)
@@ -31,7 +36,7 @@ def time_derivative(data, time):
     data : ndarray
         Data set to be normalized
     time : ndarray
-        Time value of datasets
+        Reference time value of datasets
     
     Returns
     -------
@@ -48,7 +53,7 @@ def model_data_generator(time,inputs):
     data : inputs
         Input file with model values specified 
     time : ndarray
-        Time value of datasets
+        Reference time value of datasets
     
     Returns
     -------
@@ -61,11 +66,66 @@ def model_data_generator(time,inputs):
         return data
 
     elif inputs["model"] == "exp":
-        data = (float(inputs["A"])*math.exp(float(inputs["B"])*time))+float(inputs["C"])
-        print("hello")
+        data = (float(inputs["A"])*np.exp(float(inputs["B"])*time))+float(inputs["C"])
         return data
     else:
         raise ValueError(
             "Incorrect Model Selection"
         )
           
+def process_time_generator(beta,omega):
+
+    """Generates process time from an input of beta and omega values
+
+    Parameters
+    ----------
+    beta : ndarray
+        Array with normalized conserved quantity of interest (Betas)
+    omega : ndarray
+        Array with normalized agents of change (Omegas)
+    
+    Returns
+    -------
+    ndarray
+        Array with process time values
+    """
+    return beta/omega
+
+def temporal_displacement_generator(beta,omega,omegaprimes):
+    """Generates the Temporal Displacement value.
+
+    Parameters
+    ----------
+    beta : ndarray
+        Array with normalized conserved quantity of interest (Betas)
+    omega : ndarray
+        Array with normalized agents of change (Omegas)
+    omegaprimes : ndarray
+        Array with time derivative of Omegas
+    
+    Returns
+    -------
+    ndarray
+        Array with Temporal Displacement Values
+    """
+    return (-(beta*omegaprimes)/(omega**2))
+
+def process_action_solver(time,temporalDisplacement):
+    """Finds the process action (tau_s) using numerical integration
+
+    Parameters
+    ----------
+    time : ndarray
+        Array with reference time values
+    temporalDisplacement : ndarray
+        Array with Temporal Displacement Values (D)
+    
+    Returns
+    -------
+    float
+        Value of Process time
+    """
+    _sum =0.0
+    for i in range(len(time)-1):
+        _sum += ((1+temporalDisplacement[i])*(abs(time[i]-time[i+1])))
+    return _sum
