@@ -37,3 +37,11 @@ Computs base^x Both base and x should be integers, floats, or another numeric ty
 
 Numpy or Google style docstrings 
 Follow class notes for sphinx setup 
+
+2/19/2025
+Line Profiler to help optimzie your python code. pip install line_profiler
+Pandas for large data structures
+scipy.spatial 
+Cython if you are super sweaty
+Numba 
+@numba.jit(nopython=True)
