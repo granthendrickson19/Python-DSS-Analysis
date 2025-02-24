@@ -122,10 +122,37 @@ def process_action_solver(time,temporalDisplacement):
     
     Returns
     -------
-    float
+    process action: float
         Value of Process time
     """
     _sum =0.0
     for i in range(len(time)-1):
         _sum += ((1+temporalDisplacement[i])*(abs(time[i]-time[i+1])))
     return _sum
+
+def normalized_coordinates(omega,referencetime,processtime,processaction):
+    """Returns the normalized coordinates and parameters to assess scale distortion
+
+    Parameters
+    ----------
+    omega : ndarray
+        Array with omega values
+    referencetime : ndarray
+        Array with reference time values
+    processtime : ndarray
+        Array with process time values
+    processaction : float
+        Float value of process action
+    
+    Returns
+    -------
+    effectmetric : ndarray
+        Array of effect metric values
+    normalizedreferencetime :ndarray
+        Array of normalized reference time values
+    normalized reference time :ndarray
+        Array of normalzied process time values
+        
+    """
+    
+    return (omega*processaction),(referencetime/processaction),(processtime/processaction)

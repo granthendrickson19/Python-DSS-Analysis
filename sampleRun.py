@@ -22,11 +22,24 @@ _splitdata = np.array_split(my_data,2,1)
 _time = np.concatenate(_splitdata[0])
 _rawdata = np.concatenate(_splitdata[1])
 
-databetas = DSSHandler.data_normalizer(_rawdata,inputs)
-dataomegas = DSSHandler.time_derivative(_rawdata,_time)
-dataomegaprimes = DSSHandler.time_derivative(dataomegas,_time)
-modeldata = DSSHandler.model_data_generator(_time,inputs)
-taus = DSSHandler.process_time_generator(databetas,dataomegas)
-dataD = DSSHandler.temporal_displacement_generator(databetas,dataomegas,dataomegaprimes)
-processAction = DSSHandler.process_action_solver(_time,dataD)
-print(processAction)
+
+#First I calculate all experimental data parameters
+dataBetas = DSSHandler.data_normalizer(_rawdata,inputs)
+dataOmegas = DSSHandler.time_derivative(dataBetas,_time)
+dataOmegaPrimes = DSSHandler.time_derivative(dataOmegas,_time)
+dataTaus = DSSHandler.process_time_generator(dataBetas,dataOmegas)
+dataD = DSSHandler.temporal_displacement_generator(dataBetas,dataOmegas,dataOmegaPrimes)
+dataProcessAction = DSSHandler.process_action_solver(_time,dataD)
+effectMetricExperiment,normalizedReferenceTimeExperiment,normalziedProcesstimeExperiment = DSSHandler.normalized_coordinates(dataOmegas,_time,dataTaus)
+
+#Then my model DSS parameters
+modelData = DSSHandler.model_data_generator(_time,inputs)
+modelBetas = DSSHandler.data_normalizer(modelData,inputs)
+modelOmegas = DSSHandler.time_derivative(modelBetas,_time)
+modelOmegaPrimes = DSSHandler.time_derivative(modelOmegas,_time)
+modelTaus = DSSHandler.process_time_generator(modelBetas,modelOmegas)
+modelD = DSSHandler.temporal_displacement_generator(modelBetas,modelOmegas,modelOmegaPrimes)
+modelProcessAction = DSSHandler.process_action_solver(_time,modelD)
+effectMetricModel,normalizedReferenceTimeModel,normalziedProcesstimeModel = DSSHandler.normalized_coordinates(modelOmegas,_time,modelTaus)
+
+#This will calculate the distortion between my model and prototype 
