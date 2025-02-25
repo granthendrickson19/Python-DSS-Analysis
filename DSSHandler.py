@@ -1,5 +1,5 @@
 import numpy as np
-import math
+
 
 
 
@@ -26,7 +26,6 @@ def data_normalizer(data, inputs):
         raise ValueError(
             "Incorrect normilzation option selected"
         )
-    
 
 def time_derivative(data, time):
     """Gets timed derivative using finite differences (can calculate omega or omega prime, first and second time derivative of beta respectively)
@@ -111,7 +110,7 @@ def temporal_displacement_generator(beta,omega,omegaprimes):
     return (-(beta*omegaprimes)/(omega**2))
 
 def process_action_solver(time,temporalDisplacement):
-    """Finds the process action (tau_s) using numerical integration
+    """Finds the process action (tau_s) using numerical integration. Eq 12
 
     Parameters
     ----------
@@ -131,7 +130,7 @@ def process_action_solver(time,temporalDisplacement):
     return _sum
 
 def normalized_coordinates(omega,referencetime,processtime,processaction):
-    """Returns the normalized coordinates and parameters to assess scale distortion
+    """Returns the normalized coordinates and parameters to assess scale distortion. EQ 14a-d
 
     Parameters
     ----------
@@ -156,3 +155,65 @@ def normalized_coordinates(omega,referencetime,processtime,processaction):
     """
     
     return (omega*processaction),(referencetime/processaction),(processtime/processaction)
+
+def effect_parameter_solver(effectmetric):
+    """Returns the effect parameter. EQ 20
+
+    Parameters
+    ----------
+    effectmetric : ndarray
+        Array with effect metric values
+    
+    Returns
+    -------
+    effectparameter : float
+        Float value of effect parameter.
+    """
+
+    return (np.sum(effectmetric))
+
+def geodesic_separation(dataBeta,dataD,modelEffectMetric,dataEffectMetric):
+    """Returns the geodesic separation at each process time step. Eq 45 in DSS bubble applications
+
+    Parameters
+    ----------
+    dataBeta : ndarray
+        Array with normalized conserved quantity of interest of the data 
+    modelEffectMetric : ndarray
+        ndarray with model's effect metric values
+    dataEffectMetric : ndarray
+        ndarray with experiment's effect metric values
+    dataD : ndarray
+        ndarray with temporal displacement rate values of the experiment
+    Returns
+    -------
+    Local separation : ndarray
+        ndarray with geodesic separation values at each process timestep between model and prototype.
+    Total separation : float
+        float value of total geodesic separation
+    """
+    localseparation = (dataBeta*np.sqrt(abs(dataD))*((1/dataEffectMetric)-(1/modelEffectMetric)))
+    totalseparation = np.sum(localseparation)
+    return localseparation,totalseparation
+
+def total_distortion(localseparation):
+    #LOOK AT THIS FUNCTION GRANT
+    """Returns an estimate of the 
+
+    Parameters
+    ----------
+    dataBeta : ndarray
+        Array with normalized conserved quantity of interest of the data 
+    modelEffectMetric : ndarray
+        ndarray with model's effect metric values
+    dataEffectMetric : ndarray
+        ndarray with experiment's effect metric values
+    dataD : ndarray
+        ndarray with temporal displacement rate values of the experiment
+    Returns
+    -------
+    Local separation : ndarray
+        ndarray with geodesic separation values at each process timestep between model and prototype.
+    Total separation : float
+        float value of total geodesic separation
+    """

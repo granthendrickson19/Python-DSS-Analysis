@@ -37,3 +37,5 @@ Computs base^x Both base and x should be integers, floats, or another numeric ty
 
 Numpy or Google style docstrings 
 Follow class notes for sphinx setup 
+
+MPI processing for parralization if I ever need that shit lol

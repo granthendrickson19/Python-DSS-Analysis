@@ -5,14 +5,14 @@ import yaml
 import DSSHandler
 from numpy import genfromtxt
 
-
+#Argparsing for running this through the commandline 
 if __name__ == "__main__":
     parser  = argparse.ArgumentParser(
         description="This command line program will take an input CSV file and apply DSS analysis "
         )
     parser.add_argument('-d','--data',required=True, help='Data file to analyze')
     parser.add_argument('-m','--model',required=True, help='Model YAML file for data predicition')
-    #parser.add_argument('-o','--output',required=True, help='Output file name')
+    #parser.add_argument('-o','--output',required=True, help='Output folder name')
     args = parser.parse_args(sys.argv[1:])
     my_data = genfromtxt(args.data, delimiter =',',skip_header=1)
     with open(args.model,'r') as f:
@@ -30,7 +30,8 @@ dataOmegaPrimes = DSSHandler.time_derivative(dataOmegas,_time)
 dataTaus = DSSHandler.process_time_generator(dataBetas,dataOmegas)
 dataD = DSSHandler.temporal_displacement_generator(dataBetas,dataOmegas,dataOmegaPrimes)
 dataProcessAction = DSSHandler.process_action_solver(_time,dataD)
-effectMetricExperiment,normalizedReferenceTimeExperiment,normalziedProcesstimeExperiment = DSSHandler.normalized_coordinates(dataOmegas,_time,dataTaus)
+effectMetricExperiment,normalizedReferenceTimeExperiment,normalziedProcesstimeExperiment = DSSHandler.normalized_coordinates(dataOmegas,_time,dataTaus,dataProcessAction)
+dataEffectParameter = DSSHandler.effect_parameter_solver(effectMetricExperiment)
 
 #Then my model DSS parameters
 modelData = DSSHandler.model_data_generator(_time,inputs)
@@ -40,6 +41,8 @@ modelOmegaPrimes = DSSHandler.time_derivative(modelOmegas,_time)
 modelTaus = DSSHandler.process_time_generator(modelBetas,modelOmegas)
 modelD = DSSHandler.temporal_displacement_generator(modelBetas,modelOmegas,modelOmegaPrimes)
 modelProcessAction = DSSHandler.process_action_solver(_time,modelD)
-effectMetricModel,normalizedReferenceTimeModel,normalziedProcesstimeModel = DSSHandler.normalized_coordinates(modelOmegas,_time,modelTaus)
+effectMetricModel,normalizedReferenceTimeModel,normalziedProcesstimeModel = DSSHandler.normalized_coordinates(modelOmegas,_time,modelTaus,modelProcessAction)
+modelEffectParameter = DSSHandler.effect_parameter_solver(effectMetricModel)
 
 #This will calculate the distortion between my model and prototype 
+localseparation,totalseparation = DSSHandler.geodesic_separation(dataBetas,dataD,effectMetricModel,effectMetricExperiment)
