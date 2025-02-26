@@ -39,3 +39,10 @@ Numpy or Google style docstrings
 Follow class notes for sphinx setup 
 
 MPI processing for parralization if I ever need that shit lol
+2/19/2025
+Line Profiler to help optimzie your python code. pip install line_profiler
+Pandas for large data structures
+scipy.spatial 
+Cython if you are super sweaty
+Numba 
+@numba.jit(nopython=True)
