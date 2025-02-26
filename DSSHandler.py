@@ -1,8 +1,5 @@
 import numpy as np
 
-
-
-
 def data_normalizer(data, inputs):
     """Normalizes Data to Users Input, Creates conserved quantity for DSS analysis
 

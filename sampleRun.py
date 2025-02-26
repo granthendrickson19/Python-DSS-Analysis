@@ -3,6 +3,7 @@ import sys
 import argparse
 import yaml
 import DSSHandler
+import csv
 from numpy import genfromtxt
 
 #Argparsing for running this through the commandline 
@@ -47,3 +48,8 @@ modelEffectParameter = DSSHandler.effect_parameter_solver(effectMetricModel)
 #This will calculate the distortion between my model and prototype 
 localseparation,totalseparation = DSSHandler.geodesic_separation(dataBetas,dataD,effectMetricModel,effectMetricExperiment)
 standardErrorEstimate = DSSHandler.standard_error(localseparation)
+
+# Now I make my outlet folder which will concatenate my 
+#########
+#Data (beta omega D tau...) Model (...) Distortion Values
+#########
