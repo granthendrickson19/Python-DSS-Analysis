@@ -46,3 +46,4 @@ modelEffectParameter = DSSHandler.effect_parameter_solver(effectMetricModel)
 
 #This will calculate the distortion between my model and prototype 
 localseparation,totalseparation = DSSHandler.geodesic_separation(dataBetas,dataD,effectMetricModel,effectMetricExperiment)
+standardErrorEstimate = DSSHandler.standard_error(localseparation)
