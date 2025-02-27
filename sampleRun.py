@@ -53,13 +53,34 @@ standardErrorEstimate = DSSHandler.standard_error(localseparation)
 #Data (beta omega D tau...) Model (...) Distortion Values
 #########
 #my header array with the order of
-Header = np.array(["Beta","Omega","Omega Prime","Process time","Temporal Displacement","Effect Metric","Normalized Process Time","Normalized Reference Time"])
+Header = np.array(["Beta","Omega","Omega Prime","Process time","Temporal Displacement","Effect Metric","Normalized Process Time","Normalized Reference Time","Process Action","Effect Parameter"])
+__fillerarray = np.full((modelBetas.shape),np.nan)
 
-DataModel = np.vstack((modelBetas,modelOmegas,modelOmegaPrimes,modelTaus,modelD,effectMetricModel,normalizedProcesstimeModel,normalizedReferenceTimeModel)).T
+#i do this inorder for np.savetxt to work, need to convery my floats to an array same size as the rest of my values.
+__processActionModel = DSSHandler.value_to_array(modelBetas.shape,modelProcessAction)
+__effectParameterModel = DSSHandler.value_to_array(modelBetas.shape,modelEffectParameter)
+
+#now for Experiment
+__processActionExperiment = DSSHandler.value_to_array(modelBetas.shape,dataProcessAction)
+__effectParameterExperiment = DSSHandler.value_to_array(modelBetas.shape,dataEffectParameter)
+
+#Now to print Seperation Values
+__seperationHeader = np.array(["Local Seperation","Total Seperation","Standard Error Estimate"])
+__TotalSepeartion = DSSHandler.value_to_array(modelBetas.shape,totalseparation)
+__StandardErrorEstimate = DSSHandler.value_to_array(modelBetas.shape,standardErrorEstimate)
+
+
+
+#Assemble Arrays
+
+DataModel = np.vstack((modelBetas,modelOmegas,modelOmegaPrimes,modelTaus,modelD,effectMetricModel,normalizedProcesstimeModel,normalizedReferenceTimeModel,__processActionModel,__effectParameterModel)).T
 outputModel = np.vstack((Header,DataModel))
 
-DataExperiment = np.vstack((dataBetas,dataOmegas,dataOmegaPrimes,dataTaus,dataD,effectMetricExperiment,normalziedProcesstimeExperiment,normalizedReferenceTimeExperiment)).T
+DataExperiment = np.vstack((dataBetas,dataOmegas,dataOmegaPrimes,dataTaus,dataD,effectMetricExperiment,normalziedProcesstimeExperiment,normalizedReferenceTimeExperiment,__processActionExperiment,__effectParameterExperiment)).T
 outputExperiment = np.vstack((Header,DataExperiment))
 
-outputFile = np.hstack((outputExperiment,outputModel))
+dataSeperation = np.vstack((localseparation,__TotalSepeartion,__StandardErrorEstimate)).T
+outputSeperation = np.vstack((__seperationHeader,dataSeperation))
+
+outputFile = np.hstack((outputExperiment,outputModel,outputSeperation))
 np.savetxt(args.output,outputFile,delimiter=', ',fmt="%s")
