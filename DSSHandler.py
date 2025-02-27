@@ -194,7 +194,6 @@ def geodesic_separation(dataBeta,dataD,modelEffectMetric,dataEffectMetric):
     return localseparation,totalseparation
 
 def standard_error(localseparation):
-    
     """Returns an estimate of the standard error. 95% of values fall within +- 2sigma_est values. EQ 47 in DSS Bubble Dynamics Applications.
 
     Parameters
