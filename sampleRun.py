@@ -53,7 +53,13 @@ standardErrorEstimate = DSSHandler.standard_error(localseparation)
 #Data (beta omega D tau...) Model (...) Distortion Values
 #########
 #my header array with the order of
-Header = np.array(["Beta","Omega","Omega Prime","Process time","Temporal Displacement","Effect Metric","Normalized Process Time","Normalized Reference Time","Process Action","Effect Parameter"])
-Data = np.vstack((modelBetas,modelOmegas,modelOmegaPrimes,modelTaus,modelD,effectMetricModel,normalizedProcesstimeModel,normalizedReferenceTimeModel)).T
-np.savetxt(args.output,Data,delimiter=',')
-print(modelBetas)
+Header = np.array(["Beta","Omega","Omega Prime","Process time","Temporal Displacement","Effect Metric","Normalized Process Time","Normalized Reference Time"])
+
+DataModel = np.vstack((modelBetas,modelOmegas,modelOmegaPrimes,modelTaus,modelD,effectMetricModel,normalizedProcesstimeModel,normalizedReferenceTimeModel)).T
+outputModel = np.vstack((Header,DataModel))
+
+DataExperiment = np.vstack((dataBetas,dataOmegas,dataOmegaPrimes,dataTaus,dataD,effectMetricExperiment,normalziedProcesstimeExperiment,normalizedReferenceTimeExperiment)).T
+outputExperiment = np.vstack((Header,DataExperiment))
+
+outputFile = np.hstack((outputExperiment,outputModel))
+np.savetxt(args.output,outputFile,delimiter=', ',fmt="%s")
