@@ -190,7 +190,7 @@ def geodesic_separation(dataBeta,dataD,modelEffectMetric,dataEffectMetric):
         float value of total geodesic separation
     """
     localseparation = (dataBeta*np.sqrt(abs(dataD))*((1/dataEffectMetric)-(1/modelEffectMetric)))
-    totalseparation = np.sum(localseparation)
+    totalseparation = np.sum(abs(localseparation))
     return localseparation,totalseparation
 
 def standard_error(localseparation):
