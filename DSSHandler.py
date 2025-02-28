@@ -1,21 +1,18 @@
 import numpy as np
 
-
-
-
 def data_normalizer(data, inputs):
     """Normalizes Data to Users Input, Creates conserved quantity for DSS analysis
 
     Parameters
     ----------
-    data : ndarray
+    data : numpy.ndarray
         Data set to be normalized
     inputs : dictionary
         Input file with corresponding model and data settings
     
     Returns
     -------
-    ndarray
+    Betas : numpy.ndarray
         Array with normalized data (array of Beta's in DSS terminology)
     """
     if inputs["normalize"] == "first":
@@ -32,14 +29,14 @@ def time_derivative(data, time):
 
     Parameters
     ----------
-    data : ndarray
+    data : numpy.ndarray
         Data set to be normalized
-    time : ndarray
+    time : numpy.ndarray
         Reference time value of datasets
     
     Returns
     -------
-    ndarray
+    timederivative : numpy.ndarray
         Array with normalized data (array of omegas's in DSS terminology)
     """
     return np.gradient(data,time)
@@ -51,12 +48,12 @@ def model_data_generator(time,inputs):
     ----------
     data : inputs
         Input file with model values specified 
-    time : ndarray
+    time : numpy.ndarray
         Reference time value of datasets
     
     Returns
     -------
-    ndarray
+    ModelData
         Array with non-normalized data generated from model
     """
      
@@ -78,14 +75,14 @@ def process_time_generator(beta,omega):
 
     Parameters
     ----------
-    beta : ndarray
+    beta : numpy.ndarray
         Array with normalized conserved quantity of interest (Betas)
-    omega : ndarray
+    omega : numpy.ndarray
         Array with normalized agents of change (Omegas)
     
     Returns
     -------
-    ndarray
+    Tau : numpy.ndarray
         Array with process time values
     """
     return beta/omega
@@ -95,16 +92,16 @@ def temporal_displacement_generator(beta,omega,omegaprimes):
 
     Parameters
     ----------
-    beta : ndarray
+    beta : numpy.ndarray
         Array with normalized conserved quantity of interest (Betas)
-    omega : ndarray
+    omega : numpy.ndarray
         Array with normalized agents of change (Omegas)
-    omegaprimes : ndarray
+    omegaprimes : numpy.ndarray
         Array with time derivative of Omegas
     
     Returns
     -------
-    ndarray
+    D : numpy.ndarray
         Array with Temporal Displacement Values
     """
     return (-(beta*omegaprimes)/(omega**2))
@@ -114,9 +111,9 @@ def process_action_solver(time,temporalDisplacement):
 
     Parameters
     ----------
-    time : ndarray
+    time : numpy.ndarray
         Array with reference time values
-    temporalDisplacement : ndarray
+    temporalDisplacement : numpy.ndarray
         Array with Temporal Displacement Values (D)
     
     Returns
@@ -134,22 +131,22 @@ def normalized_coordinates(omega,referencetime,processtime,processaction):
 
     Parameters
     ----------
-    omega : ndarray
+    omega : numpy.ndarray
         Array with omega values
-    referencetime : ndarray
+    referencetime : numpy.ndarray
         Array with reference time values
-    processtime : ndarray
+    processtime : numpy.ndarray
         Array with process time values
     processaction : float
         Float value of process action
     
     Returns
     -------
-    effectmetric : ndarray
+    effectmetric : numpy.ndarray
         Array of effect metric values
-    normalizedreferencetime :ndarray
+    normalizedreferencetime :numpy.ndarray
         Array of normalized reference time values
-    normalized reference time :ndarray
+    normalized reference time :numpy.ndarray
         Array of normalzied process time values
         
     """
@@ -161,7 +158,7 @@ def effect_parameter_solver(effectmetric):
 
     Parameters
     ----------
-    effectmetric : ndarray
+    effectmetric : numpy.ndarray
         Array with effect metric values
     
     Returns
@@ -177,18 +174,18 @@ def geodesic_separation(dataBeta,dataD,modelEffectMetric,dataEffectMetric):
 
     Parameters
     ----------
-    dataBeta : ndarray
+    dataBeta : numpy.ndarray
         Array with normalized conserved quantity of interest of the data 
-    modelEffectMetric : ndarray
-        ndarray with model's effect metric values
-    dataEffectMetric : ndarray
-        ndarray with experiment's effect metric values
-    dataD : ndarray
-        ndarray with temporal displacement rate values of the experiment
+    modelEffectMetric : numpy.ndarray
+        Array with model's effect metric values
+    dataEffectMetric : numpy.ndarray
+        Array with experiment's effect metric values
+    dataD : numpy.ndarray
+        Array with temporal displacement rate values of the experiment
     Returns
     -------
-    Local separation : ndarray
-        ndarray with geodesic separation values at each process timestep between model and prototype.
+    Local separation : numpy.ndarray
+        Array with geodesic separation values at each process timestep between model and prototype.
     Total separation : float
         float value of total geodesic separation
     """
@@ -196,24 +193,35 @@ def geodesic_separation(dataBeta,dataD,modelEffectMetric,dataEffectMetric):
     totalseparation = np.sum(localseparation)
     return localseparation,totalseparation
 
-def total_distortion(localseparation):
-    #LOOK AT THIS FUNCTION GRANT
-    """Returns an estimate of the 
+def standard_error(localseparation):
+    """Returns an estimate of the standard error. 95% of values fall within +- 2sigma_est values. EQ 47 in DSS Bubble Dynamics Applications.
 
     Parameters
     ----------
-    dataBeta : ndarray
-        Array with normalized conserved quantity of interest of the data 
-    modelEffectMetric : ndarray
-        ndarray with model's effect metric values
-    dataEffectMetric : ndarray
-        ndarray with experiment's effect metric values
-    dataD : ndarray
-        ndarray with temporal displacement rate values of the experiment
+    localseparation : numpy.ndarray
+        Array with normalized conserved quantity of interest of the data local separation between model and prototype at each process time point
+    
     Returns
     -------
-    Local separation : ndarray
-        ndarray with geodesic separation values at each process timestep between model and prototype.
-    Total separation : float
-        float value of total geodesic separation
+    sigmaest : float
+        Float value of estimate of standard error (total distortion) 
     """
+    return np.sqrt(((np.sum(localseparation**2))/len(localseparation)))
+
+def value_to_array(size,value):
+    """Returns an array with the first value being the value of interest while the rest are numpy.nan data type, this is for data saving purposes
+
+    Parameters
+    ----------
+    size : int
+        Int value with size of array
+    value : float
+        float value of interest
+    Returns
+    -------
+    productArray : numpy.ndarray
+        Array with value of interest in first element while rest is numpy.nan
+    """
+    __fillerarray = np.full((size),np.nan)
+    __fillerarray[0] = value
+    return __fillerarray
