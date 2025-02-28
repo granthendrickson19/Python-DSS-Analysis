@@ -207,6 +207,7 @@ def standard_error(localseparation):
         Float value of estimate of standard error (total distortion) 
     """
     return np.sqrt(((np.sum(localseparation**2))/len(localseparation)))
+
 def value_to_array(size,value):
     """Returns an array with the first value being the value of interest while the rest are numpy.nan data type, this is for data saving purposes
 

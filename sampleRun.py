@@ -53,8 +53,8 @@ standardErrorEstimate = DSSHandler.standard_error(localseparation)
 #Data (beta omega D tau...) Model (...) Distortion Values
 #########
 #my header array with the order of
-Header = np.array(["Beta","Omega","Omega Prime","Process time","Temporal Displacement","Effect Metric","Normalized Process Time","Normalized Reference Time","Process Action","Effect Parameter"])
-__fillerarray = np.full((modelBetas.shape),np.nan)
+__ModelHeader = np.array(["Model Beta","Model Omega","Model Omega Prime","Model Process time","Model Temporal Displacement","Model Effect Metric","Model Normalized Process Time","Model Normalized Reference Time","Model Process Action","Model Effect Parameter"])
+__ExperimentHeader = np.array(["Data Beta","Data Omega","Data Omega Prime","Data Process time","Data Temporal Displacement","Data Effect Metric","Data Normalized Process Time","Data Normalized Reference Time","Data Process Action","Data Effect Parameter"])
 
 #i do this inorder for np.savetxt to work, need to convery my floats to an array same size as the rest of my values.
 __processActionModel = DSSHandler.value_to_array(modelBetas.shape,modelProcessAction)
@@ -74,10 +74,10 @@ __StandardErrorEstimate = DSSHandler.value_to_array(modelBetas.shape,standardErr
 #Assemble Arrays
 
 DataModel = np.vstack((modelBetas,modelOmegas,modelOmegaPrimes,modelTaus,modelD,effectMetricModel,normalizedProcesstimeModel,normalizedReferenceTimeModel,__processActionModel,__effectParameterModel)).T
-outputModel = np.vstack((Header,DataModel))
+outputModel = np.vstack((__ModelHeader,DataModel))
 
 DataExperiment = np.vstack((dataBetas,dataOmegas,dataOmegaPrimes,dataTaus,dataD,effectMetricExperiment,normalziedProcesstimeExperiment,normalizedReferenceTimeExperiment,__processActionExperiment,__effectParameterExperiment)).T
-outputExperiment = np.vstack((Header,DataExperiment))
+outputExperiment = np.vstack((__ExperimentHeader,DataExperiment))
 
 dataSeperation = np.vstack((localseparation,__TotalSepeartion,__StandardErrorEstimate)).T
 outputSeperation = np.vstack((__seperationHeader,dataSeperation))
