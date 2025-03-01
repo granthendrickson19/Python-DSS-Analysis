@@ -121,9 +121,8 @@ def process_action_solver(time,temporalDisplacement):
     process action: float
         Value of Process time
     """
-    _sum =0.0
-    for i in range(len(time)-1):
-        _sum += ((1+temporalDisplacement[i])*(abs(time[i]-time[i+1])))
+    integrand = 1+temporalDisplacement
+    _sum = np.trapezoid(integrand, time)
     return _sum
 
 def normalized_coordinates(omega,referencetime,processtime,processaction):
