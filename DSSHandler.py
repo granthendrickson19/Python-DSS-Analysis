@@ -174,7 +174,7 @@ def geodesic_separation(dataBeta,dataD,modelEffectMetric,dataEffectMetric):
     Parameters
     ----------
     dataBeta : numpy.ndarray
-        Array with normalized conserved quantity of interest of the data 
+        Array with normalized conserved quantity of interest of the experiment
     modelEffectMetric : numpy.ndarray
         Array with model's effect metric values
     dataEffectMetric : numpy.ndarray

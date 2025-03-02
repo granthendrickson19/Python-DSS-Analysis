@@ -1,5 +1,6 @@
 import numpy as np
 import DSSHandler as DSS    
+# this is my test file which will run with pytest to test simple cases of my function 
 
 def test_data_normalzier_first():
     quad_dict = {
@@ -112,3 +113,14 @@ def test_geodesic_separation():
     assert np.allclose(exp2,obs2)
 
 def test_standard_error():
+    localsep = np.array([2,3,4])
+    obs = DSS.standard_error(localsep)
+    exp = (np.sqrt(29/3))
+    assert np.allclose(obs,exp)
+
+def test_value_to_array():
+    value = 5
+    size = 3
+    obs = DSS.value_to_array(size,value)
+    exp = np.array([5,np.nan,np.nan])
+    assert np.allclose(obs,exp,equal_nan=True)
