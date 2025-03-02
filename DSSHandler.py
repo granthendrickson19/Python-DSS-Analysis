@@ -121,9 +121,8 @@ def process_action_solver(time,temporalDisplacement):
     process action: float
         Value of Process time
     """
-    _sum =0.0
-    for i in range(len(time)-1):
-        _sum += ((1+temporalDisplacement[i])*(abs(time[i]-time[i+1])))
+    integrand = 1+temporalDisplacement
+    _sum = np.trapezoid(integrand, time)
     return _sum
 
 def normalized_coordinates(omega,referencetime,processtime,processaction):
@@ -189,8 +188,13 @@ def geodesic_separation(dataBeta,dataD,modelEffectMetric,dataEffectMetric):
     Total separation : float
         float value of total geodesic separation
     """
+<<<<<<< HEAD
     localseparation = abs((dataBeta*np.sqrt(abs(dataD))*((1/dataEffectMetric)-(1/modelEffectMetric))))
     totalseparation = np.sum(localseparation)
+=======
+    localseparation = (dataBeta*np.sqrt(abs(dataD))*((1/dataEffectMetric)-(1/modelEffectMetric)))
+    totalseparation = np.sum(abs(localseparation))
+>>>>>>> a4ee152a211afbd4c3f7e0b95dfad61609dd539d
     return localseparation,totalseparation
 
 def standard_error(localseparation):
