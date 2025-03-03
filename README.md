@@ -1,6 +1,6 @@
 ## This is also my project proposal initially will update with a more concrete utilization guide at a future date.
 
-+ [![cov](https://granthendrickson19.github.io/Python-DSS-Analysis/badges/coverage.svg)](https://github.com/<you>/<repo>/actions)
++ [![cov](https://granthendrickson19.github.io/Python-DSS-Analysis/badges/coverage.svg)](https://github.com/granthendrickson19/Python-DSS-Analysis/actions)
 
 My python package will perform Dynamical System Scaling (DSS) analysis for inputted datasets and models. DSS is a novel scaling technique that attempts to consider the transient response of a system with its scaling criteria. This allows for distortion between the model and prototype to vary as a function of time. Compared to previous scaling methods (Hierarchical Two-Tiered Scaling, Fractional Scaling Analysis...) distortion being calculated over time rather than a single value is a powerful metric. Say a model predicts a prototype well for the first half of the transient before diverging. DSS would allow engineers to glean useful data in the first part of the transient while discarding the rest. Some of the key DSS values that will be calculated include, the nondimensional conserved values and agents of change, distortion, temporal displacement, and scaling values.
 
