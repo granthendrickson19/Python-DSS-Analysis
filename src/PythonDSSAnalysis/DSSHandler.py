@@ -1,6 +1,6 @@
 import numpy as np
 
-def data_normalizer(data, inputs):
+def data_normalizer(data, inputs=0):
     """Normalizes Data to Users Input, Creates conserved quantity for DSS analysis
 
     Parameters
@@ -20,9 +20,8 @@ def data_normalizer(data, inputs):
     elif inputs["normalize"] == "last":
         return (data / data[-1])
     else:
-        raise ValueError(
-            "Incorrect normilzation option selected"
-        )
+        # default normalization is first
+        return (data / data[0])
 
 def time_derivative(data, time):
     """Gets timed derivative using finite differences (can calculate omega or omega prime, first and second time derivative of beta respectively)

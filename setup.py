@@ -1,14 +1,17 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
     name='PythonDSSAnalysis',
-    version='1.0',    
+    version='1.3',    
     description='A python package for DSS Analysis',
     url='https://github.com/granthendrickson19/Python-DSS-Analysis',
     author='Grant Hendrickson',
     author_email='granthendrickson19@gmail.com',
     license='MIT',
-    packages=['src/PythonDSSAnalysis'],
+    package_data={'Sample Model 1': ["samplemodel.yml"],
+                  "Sample Model 2": ["samplemodelexp.yml"],
+                  "Sample Data": ["sampledata.csv"],
+                    "Sample Run":["sampleRun.py"]},
     install_requires=[
                       'numpy>=2.0',                     
                       ],
