@@ -8,10 +8,6 @@ setup(
     author='Grant Hendrickson',
     author_email='granthendrickson19@gmail.com',
     license='MIT',
-    package_data={'Sample Model 1': ["samplemodel.yml"],
-                  "Sample Model 2": ["samplemodelexp.yml"],
-                  "Sample Data": ["sampledata.csv"],
-                    "Sample Run":["sampleRun.py"]},
     install_requires=[
                       'numpy>=2.0',                     
                       ],
