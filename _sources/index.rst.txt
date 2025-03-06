@@ -16,4 +16,4 @@ documentation for details.
    :caption: Contents:
       
 .. toctree::
-   PythonDSSAnalysis/src/PythonDSSAnalysis
+   DSSHandler
