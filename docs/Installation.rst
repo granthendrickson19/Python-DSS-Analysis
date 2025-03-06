@@ -1,8 +1,8 @@
 Quickstart Guide
 ============
-------------
+---------------------------------
 Implementing to Existing Projects
------------
+---------------------------------
 
 For users uninterested in cloning the source directory, they may use the functions simply by using pip to install the package.
 
@@ -23,9 +23,9 @@ Users can now call all the functions available by invoking the DSS module
     betas = DSS.data_normalizer(someData)
 
 
-----------
+----------------
 Cloning the Repo
-----------
+----------------
 First, it is recommended the users clone the repository into a fresh directory with a virtual environment
 
 .. code-block:: python
@@ -41,9 +41,9 @@ Now the user should navigate into the Python-DSS-Analysis working directory (whe
 This should install numpy and pyyaml as the two dependencies the project requires.
 
 
-------
+----------------
 Running Examples
-------
+----------------
 Included with the repository, is sample data, a sampleRun.py file which can be called from the command line, and two sample model files. Both models fit the sample data, one with a quadratic fit, the other with an exponential.
 
 Users can quickly run the two example problems by switching their directory to the working directory (where sampleRun.py is located). Running sampleRun.py from the command line takes 3 flags:
@@ -59,5 +59,5 @@ Users can quickly run the two example problems by switching their directory to t
 This will create a quadraticOutput.csv file with all the DSS parameters calculated, the users can run the sampledata again with the exponential fit very similarly
 
 .. code-block:: python
-    
+
     python3 sampleRun.py -d sampledata.csv -m samplemodelexp.yml -o exponentialOutput
