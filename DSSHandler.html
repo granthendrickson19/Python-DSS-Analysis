@@ -15,7 +15,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Installation" href="Installation.html" />
-    <link rel="prev" title="PythonDSS DOcumentation" href="index.html" />
+    <link rel="prev" title="PythonDSS Documentation" href="index.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -33,8 +33,230 @@
 
           <div class="body" role="main">
             
-  <section id="functions">
-<h1>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h1>
+  <section id="module-src.PythonDSSAnalysis.DSSHandler">
+<span id="functions"></span><h1>Functions<a class="headerlink" href="#module-src.PythonDSSAnalysis.DSSHandler" title="Link to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.PythonDSSAnalysis.DSSHandler.data_normalizer">
+<span class="sig-prename descclassname"><span class="pre">src.PythonDSSAnalysis.DSSHandler.</span></span><span class="sig-name descname"><span class="pre">data_normalizer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.PythonDSSAnalysis.DSSHandler.data_normalizer" title="Link to this definition">¶</a></dt>
+<dd><p>Normalizes Data to Users Input, Creates conserved quantity for DSS analysis</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a>) – Data set to be normalized</p></li>
+<li><p><strong>inputs</strong> (<em>dictionary</em>) – Input file with corresponding model and data settings</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>Betas</strong> – Array with normalized data (array of Beta’s in DSS terminology)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.PythonDSSAnalysis.DSSHandler.effect_parameter_solver">
+<span class="sig-prename descclassname"><span class="pre">src.PythonDSSAnalysis.DSSHandler.</span></span><span class="sig-name descname"><span class="pre">effect_parameter_solver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">effectmetric</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.PythonDSSAnalysis.DSSHandler.effect_parameter_solver" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the effect parameter. EQ 20</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>effectmetric</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a>) – Array with effect metric values</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>effectparameter</strong> – Float value of effect parameter.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.PythonDSSAnalysis.DSSHandler.geodesic_separation">
+<span class="sig-prename descclassname"><span class="pre">src.PythonDSSAnalysis.DSSHandler.</span></span><span class="sig-name descname"><span class="pre">geodesic_separation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataBeta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataD</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modelEffectMetric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataEffectMetric</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.PythonDSSAnalysis.DSSHandler.geodesic_separation" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the geodesic separation at each process time step. Eq 45 in DSS bubble applications</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataBeta</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a>) – Array with normalized conserved quantity of interest of the experiment</p></li>
+<li><p><strong>modelEffectMetric</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a>) – Array with model’s effect metric values</p></li>
+<li><p><strong>dataEffectMetric</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a>) – Array with experiment’s effect metric values</p></li>
+<li><p><strong>dataD</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a>) – Array with temporal displacement rate values of the experiment</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>Local separation</strong> (<em>numpy.ndarray</em>) – Array with geodesic separation values at each process timestep between model and prototype.</p></li>
+<li><p><strong>Total separation</strong> (<em>float</em>) – float value of total geodesic separation</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.PythonDSSAnalysis.DSSHandler.model_data_generator">
+<span class="sig-prename descclassname"><span class="pre">src.PythonDSSAnalysis.DSSHandler.</span></span><span class="sig-name descname"><span class="pre">model_data_generator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.PythonDSSAnalysis.DSSHandler.model_data_generator" title="Link to this definition">¶</a></dt>
+<dd><p>Generates the model dataset for comparison to experimental data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>inputs</em>) – Input file with model values specified</p></li>
+<li><p><strong>time</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a>) – Reference time value of datasets</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Array with non-normalized data generated from model</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ModelData</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.PythonDSSAnalysis.DSSHandler.normalized_coordinates">
+<span class="sig-prename descclassname"><span class="pre">src.PythonDSSAnalysis.DSSHandler.</span></span><span class="sig-name descname"><span class="pre">normalized_coordinates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">omega</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">referencetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">processtime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">processaction</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.PythonDSSAnalysis.DSSHandler.normalized_coordinates" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the normalized coordinates and parameters to assess scale distortion. EQ 14a-d</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>omega</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a>) – Array with omega values</p></li>
+<li><p><strong>referencetime</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a>) – Array with reference time values</p></li>
+<li><p><strong>processtime</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a>) – Array with process time values</p></li>
+<li><p><strong>processaction</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – Float value of process action</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>effectmetric</strong> (<em>numpy.ndarray</em>) – Array of effect metric values</p></li>
+<li><p><strong>normalizedreferencetime</strong> (<em>numpy.ndarray</em>) – Array of normalized reference time values</p></li>
+<li><p><strong>normalized reference time</strong> (<em>numpy.ndarray</em>) – Array of normalzied process time values</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.PythonDSSAnalysis.DSSHandler.process_action_solver">
+<span class="sig-prename descclassname"><span class="pre">src.PythonDSSAnalysis.DSSHandler.</span></span><span class="sig-name descname"><span class="pre">process_action_solver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temporalDisplacement</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.PythonDSSAnalysis.DSSHandler.process_action_solver" title="Link to this definition">¶</a></dt>
+<dd><p>Finds the process action (tau_s) using numerical integration. Eq 12</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>time</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a>) – Array with reference time values</p></li>
+<li><p><strong>temporalDisplacement</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a>) – Array with Temporal Displacement Values (D)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>process action</strong> – Value of Process time</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.PythonDSSAnalysis.DSSHandler.process_time_generator">
+<span class="sig-prename descclassname"><span class="pre">src.PythonDSSAnalysis.DSSHandler.</span></span><span class="sig-name descname"><span class="pre">process_time_generator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">beta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omega</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.PythonDSSAnalysis.DSSHandler.process_time_generator" title="Link to this definition">¶</a></dt>
+<dd><p>Generates process time from an input of beta and omega values</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>beta</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a>) – Array with normalized conserved quantity of interest (Betas)</p></li>
+<li><p><strong>omega</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a>) – Array with normalized agents of change (Omegas)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>Tau</strong> – Array with process time values</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.PythonDSSAnalysis.DSSHandler.standard_error">
+<span class="sig-prename descclassname"><span class="pre">src.PythonDSSAnalysis.DSSHandler.</span></span><span class="sig-name descname"><span class="pre">standard_error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">localseparation</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.PythonDSSAnalysis.DSSHandler.standard_error" title="Link to this definition">¶</a></dt>
+<dd><p>Returns an estimate of the standard error. 95% of values fall within +- 2sigma_est values. EQ 47 in DSS Bubble Dynamics Applications.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>localseparation</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a>) – Array with normalized conserved quantity of interest of the data local separation between model and prototype at each process time point</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>sigmaest</strong> – Float value of estimate of standard error (total distortion)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.PythonDSSAnalysis.DSSHandler.temporal_displacement_generator">
+<span class="sig-prename descclassname"><span class="pre">src.PythonDSSAnalysis.DSSHandler.</span></span><span class="sig-name descname"><span class="pre">temporal_displacement_generator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">beta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omega</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omegaprimes</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.PythonDSSAnalysis.DSSHandler.temporal_displacement_generator" title="Link to this definition">¶</a></dt>
+<dd><p>Generates the Temporal Displacement value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>beta</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a>) – Array with normalized conserved quantity of interest (Betas)</p></li>
+<li><p><strong>omega</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a>) – Array with normalized agents of change (Omegas)</p></li>
+<li><p><strong>omegaprimes</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a>) – Array with time derivative of Omegas</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>D</strong> – Array with Temporal Displacement Values</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.PythonDSSAnalysis.DSSHandler.time_derivative">
+<span class="sig-prename descclassname"><span class="pre">src.PythonDSSAnalysis.DSSHandler.</span></span><span class="sig-name descname"><span class="pre">time_derivative</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.PythonDSSAnalysis.DSSHandler.time_derivative" title="Link to this definition">¶</a></dt>
+<dd><p>Gets timed derivative using finite differences (can calculate omega or omega prime, first and second time derivative of beta respectively)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a>) – Data set to be normalized</p></li>
+<li><p><strong>time</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a>) – Reference time value of datasets</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>timederivative</strong> – Array with normalized data (array of omegas’s in DSS terminology)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.PythonDSSAnalysis.DSSHandler.value_to_array">
+<span class="sig-prename descclassname"><span class="pre">src.PythonDSSAnalysis.DSSHandler.</span></span><span class="sig-name descname"><span class="pre">value_to_array</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.PythonDSSAnalysis.DSSHandler.value_to_array" title="Link to this definition">¶</a></dt>
+<dd><p>Returns an array with the first value being the value of interest while the rest are numpy.nan data type, this is for data saving purposes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>size</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – Int value with size of array</p></li>
+<li><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – float value of interest</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>productArray</strong> – Array with value of interest in first element while rest is numpy.nan</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 
@@ -64,7 +286,20 @@
 </search>
 <script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Functions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#src.PythonDSSAnalysis.DSSHandler.data_normalizer"><code class="docutils literal notranslate"><span class="pre">data_normalizer()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#src.PythonDSSAnalysis.DSSHandler.effect_parameter_solver"><code class="docutils literal notranslate"><span class="pre">effect_parameter_solver()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#src.PythonDSSAnalysis.DSSHandler.geodesic_separation"><code class="docutils literal notranslate"><span class="pre">geodesic_separation()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#src.PythonDSSAnalysis.DSSHandler.model_data_generator"><code class="docutils literal notranslate"><span class="pre">model_data_generator()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#src.PythonDSSAnalysis.DSSHandler.normalized_coordinates"><code class="docutils literal notranslate"><span class="pre">normalized_coordinates()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#src.PythonDSSAnalysis.DSSHandler.process_action_solver"><code class="docutils literal notranslate"><span class="pre">process_action_solver()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#src.PythonDSSAnalysis.DSSHandler.process_time_generator"><code class="docutils literal notranslate"><span class="pre">process_time_generator()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#src.PythonDSSAnalysis.DSSHandler.standard_error"><code class="docutils literal notranslate"><span class="pre">standard_error()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#src.PythonDSSAnalysis.DSSHandler.temporal_displacement_generator"><code class="docutils literal notranslate"><span class="pre">temporal_displacement_generator()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#src.PythonDSSAnalysis.DSSHandler.time_derivative"><code class="docutils literal notranslate"><span class="pre">time_derivative()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#src.PythonDSSAnalysis.DSSHandler.value_to_array"><code class="docutils literal notranslate"><span class="pre">value_to_array()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation</a></li>
 </ul>
 
@@ -72,7 +307,7 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="index.html" title="previous chapter">PythonDSS DOcumentation</a></li>
+      <li>Previous: <a href="index.html" title="previous chapter">PythonDSS Documentation</a></li>
       <li>Next: <a href="Installation.html" title="next chapter">Installation</a></li>
   </ul></li>
 </ul>
