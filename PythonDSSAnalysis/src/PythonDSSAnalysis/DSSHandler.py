@@ -15,13 +15,13 @@ def data_normalizer(data, inputs=0):
     Betas : numpy.ndarray
         Array with normalized data (array of Beta's in DSS terminology)
     """
+    if inputs==0:
+         # default normalization is first
+        return (data / data[0])
     if inputs["normalize"] == "first":
         return (data / data[0])
     elif inputs["normalize"] == "last":
         return (data / data[-1])
-    else:
-        # default normalization is first
-        return (data / data[0])
 
 def time_derivative(data, time):
     """Gets timed derivative using finite differences (can calculate omega or omega prime, first and second time derivative of beta respectively)
