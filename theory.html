@@ -12,6 +12,7 @@
     <script src="_static/documentation_options.js?v=cb975c41"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="Quickstart Guide" href="Installation.html" />
@@ -34,13 +35,24 @@
             
   <section id="theory">
 <h1>Theory<a class="headerlink" href="#theory" title="Link to this heading">¶</a></h1>
-<p>This serves as a short refresher for Dynamical System Scaling (DSS) analysis. It is heavily recommended that the user reads the founding paper of DSS analysis before using this python package <a class="reference internal" href="#ref" id="id1"><span>[Ref]</span></a>.</p>
-<div role="list" class="citation-list">
-<div class="citation" id="ref" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">Ref</a><span class="fn-bracket">]</span></span>
-<p><a class="reference external" href="https://glc.ans.org/nureth-16/data/papers/13129.pdf">https://glc.ans.org/nureth-16/data/papers/13129.pdf</a></p>
-</div>
-</div>
+<p>This serves as a short refresher for Dynamical System Scaling (DSS) analysis. It is heavily recommended that the user reads the founding paper of DSS analysis before using this python package <a href="#id3"><span class="problematic" id="id1">[1]_</span></a>.</p>
+<p>The DSS method is used to optimize process scaling, especially for transient processes. Where previous scaling methodologies attempt to match the parameter of interest, DSS attempts to match the parameter of interest and time rate of change of the parameter of interest.
+By attempting to match transient processes, engineers are able to calculate distortion throughout the transient. This is incredibly powerful as previous scaling methodologies could only provide total distortion.</p>
+<p>With DSS, engineers may be able to glean useful data from part of the transient (even if as a whole it is poorly scaled) that previously they would’ve discarded due to a poor total distortion. First the conserved quantity of interest is defined</p>
+<div class="math notranslate nohighlight">
+\[\beta (t) = \frac{1}{\lambda_0} \int \int \int \lambda(x,t)dV
+\omega = \frac{d\beta}{dt}
+\omega' = \frac{d\omega}{dt}\]</div>
+<p>We can now define a process time:</p>
+<div class="math notranslate nohighlight">
+\[\tau = \frac{\beta}{\omega}\]</div>
+<p>from <a href="#id4"><span class="problematic" id="id2">[1]_</span></a> “…Process time [is defined] as the inverse of the fractional rate of change of a conserved quantity.”
+By taking the derivative of process time with respect to reference time allows us to define our <em>temporal displacement rate</em></p>
+<div class="math notranslate nohighlight">
+\[D=\frac{d\tau-dt}{dt}=-\frac{\beta}{\omega^2}\frac{d\omega}{dt}
+d\tau = (1+D)dt\]</div>
+<p>For a constant rate process, D=0. If D is negative, the process time is contracted relative to reference time. If D is positive process time is dislated relative to reference time.
+.. [1] <a class="reference external" href="https://glc.ans.org/nureth-16/data/papers/13129.pdf">https://glc.ans.org/nureth-16/data/papers/13129.pdf</a></p>
 </section>
 
 
