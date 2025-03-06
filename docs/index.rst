@@ -13,3 +13,4 @@ PythonDSS Documentation
 .. toctree::
    DSSHandler.rst
    Installation.rst
+   theory.rst
