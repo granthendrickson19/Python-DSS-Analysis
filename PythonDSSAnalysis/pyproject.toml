@@ -16,7 +16,8 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
 ]
 dependencies = [
-    "numpy>=2.0",  # compatible versions controlled through scipy
+    "numpy>=2.0",
+    "pyyaml>=6.0"# compatible versions controlled through scipy
 ]
 [tool.setuptools.packages.find]
 where = ["src"]
