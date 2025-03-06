@@ -9,7 +9,9 @@ With DSS, engineers may be able to glean useful data from part of the transient 
 
 .. math::
     \beta (t) = \frac{1}{\lambda_0} \int \int \int \lambda(x,t)dV
+.. math::
     \omega = \frac{d\beta}{dt}
+.. math::
     \omega' = \frac{d\omega}{dt}
 
 We can now define a process time:
