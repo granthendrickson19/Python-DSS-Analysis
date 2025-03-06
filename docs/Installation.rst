@@ -47,6 +47,9 @@ Users can quickly run the two example problems by switching their directory to t
 3. -o This is the output file name, it will be created in the same directory at which the sampleRun.py file is invoked.
 
 .. code-block::
-    python3 -m sampleRun.py -d sampledata.csv -m samplemodel.yml -o quadraticOutput
+    python3 sampleRun.py -d sampledata.csv -m samplemodel.yml -o quadraticOutput
 
-This will create a quadraticOutput.csv file with all the DSS parameters calculated
+This will create a quadraticOutput.csv file with all the DSS parameters calculated, the users can run the sampledata again with the exponential fit very similarly
+
+.. code-block::
+    python3 sampleRun.py -d sampledata.csv -m samplemodelexp.yml -o exponentialOutput
