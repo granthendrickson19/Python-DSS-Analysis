@@ -22,6 +22,8 @@ By taking the derivative of process time with respect to reference time allows u
 
 .. math::
     D=\frac{d\tau-dt}{dt}=-\frac{\beta}{\omega^2}\frac{d\omega}{dt}
+
+.. math::
     d\tau = (1+D)dt
 
 For a constant rate process, D=0, which implies that the process time and reference time interval are equivalant. If D is negative, the process time is contracted relative to reference time. If D is positive process time is dislated relative to reference time.
