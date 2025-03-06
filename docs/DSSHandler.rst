@@ -1,3 +1,3 @@
 Functions
 -------------------
-.. automodule:: PythonDSSAnalysis/src/PythonDSSAnalysis/DSSHandler
+.. automodule:: PythonDSSAnalysis.src.PythonDSSAnalysis.DSSHandler

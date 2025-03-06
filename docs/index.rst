@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-PythonDSS documentation
+PythonDSS DOcumentation
 =======================
 
 Add your content using ``reStructuredText`` syntax. See the
@@ -17,3 +17,4 @@ documentation for details.
       
 .. toctree::
    DSSHandler
+   Installation
