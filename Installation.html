@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Installation &#8212; PythonDSS 2025 documentation</title>
+    <title>Quickstart Guide &#8212; PythonDSS 2025 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
     <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
@@ -32,28 +32,25 @@
 
           <div class="body" role="main">
             
-  <section id="installation">
-<h1>Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h1>
-<p>For users uninterested in cloning the source directory, they may use the ‘functions’_ simply by using pip to install the package.
-.. code-block:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;&#39;</span><span class="n">pip</span> <span class="n">install</span> <span class="n">PythonDSSAnalysis</span><span class="s1">&#39;&#39;&#39;</span>
-</pre></div>
-</div>
-<p>With this users can import the package into their current working files with:
-.. code-block:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;&#39;</span><span class="kn">from</span><span class="w"> </span><span class="nn">PythonDSSAnalysis</span><span class="w"> </span><span class="kn">import</span> <span class="n">DSSHandler</span> <span class="k">as</span> <span class="n">DSS</span><span class="s1">&#39;&#39;</span>
-</pre></div>
-</div>
-<p>Users can now call all the ‘functions &lt;<a href="#id1"><span class="problematic" id="id2">functions_</span></a>&gt;’_ available by invoking the DSS module
-.. code-block:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;&#39;</span><span class="n">betas</span> <span class="o">=</span> <span class="n">DSS</span><span class="o">.</span><span class="n">data_normalizer</span><span class="p">(</span><span class="n">someData</span><span class="p">)</span><span class="s1">&#39;&#39;</span>
-</pre></div>
-</div>
+  <section id="quickstart-guide">
+<h1>Quickstart Guide<a class="headerlink" href="#quickstart-guide" title="Link to this heading">¶</a></h1>
+<p>For users uninterested in cloning the source directory, they may use the functions simply by using pip to install the package.</p>
+<p>With this users can import the package into their current working files with:</p>
+<p>Users can now call all the functions available by invoking the DSS module</p>
 <section id="cloning-the-repo">
 <h2>Cloning the Repo<a class="headerlink" href="#cloning-the-repo" title="Link to this heading">¶</a></h2>
-<p>First, it is recommended the users clone the repository into a new directory</p>
-<p>‘
-.. _functions: <a class="reference external" href="https://granthendrickson19.github.io/Python-DSS-Analysis/DSSHandler">https://granthendrickson19.github.io/Python-DSS-Analysis/DSSHandler</a>.html#</p>
+<p>First, it is recommended the users clone the repository into a fresh directory with a virtual environment</p>
+<p>Now the user should navigate into the Python-DSS-Analysis working directory (where the pyproject.toml file is located) to install the dependencies</p>
+<p>This should install numpy and pyyaml as the two dependencies the project requires.</p>
+</section>
+<section id="running-examples">
+<h2>Running Examples<a class="headerlink" href="#running-examples" title="Link to this heading">¶</a></h2>
+<p>Included with the repository, is sample data, a sampleRun.py file which can be called from the command line, and two sample model files. Both models fit the sample data, one with a quadratic fit, the other with an exponential.</p>
+<p>Users can quickly run the two example problems by switching their directory to the working directory (where sampleRun.py is located). Running sampleRun.py from the command line takes 3 flags:
+1. -m the model file, this is the .yml files which should be structured as the sample files provided
+2. -d the data file, This is time demarked data of a single parameter of interest the first column must be time, the second column is the parameter of interest. Upon reading the file. the sampleRun skips the first line assuming titles of the data.
+3. -o This is the output file name, it will be created in the same directory at which the sampleRun.py file is invoked.</p>
+<p>This will create a quadraticOutput.csv file with all the DSS parameters calculated</p>
 </section>
 </section>
 
@@ -85,8 +82,9 @@
 <script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="DSSHandler.html">Functions</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Quickstart Guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#cloning-the-repo">Cloning the Repo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-examples">Running Examples</a></li>
 </ul>
 </li>
 </ul>
