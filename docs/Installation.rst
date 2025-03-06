@@ -54,10 +54,10 @@ Users can quickly run the two example problems by switching their directory to t
 
 .. code-block:: python
 
-    python3 sampleRun.py -d sampledata.csv -m samplemodel.yml -o quadraticOutput
+    python3 sampleRun.py -d sampledata.csv -m samplemodel.yml -o quadraticOutput.csv
 
 This will create a quadraticOutput.csv file with all the DSS parameters calculated, the users can run the sampledata again with the exponential fit very similarly
 
 .. code-block:: python
 
-    python3 sampleRun.py -d sampledata.csv -m samplemodelexp.yml -o exponentialOutput
+    python3 sampleRun.py -d sampledata.csv -m samplemodelexp.yml -o exponentialOutput.csv
